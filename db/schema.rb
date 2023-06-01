@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_003008) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_010307) do
+  create_table "classroom_students", force: :cascade do |t|
+    t.integer "classroom_id", null: false
+    t.integer "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classroom_students_on_classroom_id"
+    t.index ["student_id"], name: "index_classroom_students_on_student_id"
+  end
+
+  create_table "classroom_teachers", force: :cascade do |t|
+    t.integer "classroom_id", null: false
+    t.integer "teacher_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classroom_teachers_on_classroom_id"
+    t.index ["teacher_id"], name: "index_classroom_teachers_on_teacher_id"
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string "Classroom"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.boolean "active", default: true
@@ -66,6 +91,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_003008) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "classroom_students", "classrooms"
+  add_foreign_key "classroom_students", "students"
+  add_foreign_key "classroom_teachers", "classrooms"
+  add_foreign_key "classroom_teachers", "teachers"
   add_foreign_key "items", "type_items"
   add_foreign_key "students", "people"
   add_foreign_key "teachers", "people"
