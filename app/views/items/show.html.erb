@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
+
+      <div class="form-group mb-3">
+    <p><strong>Name:</strong></p>
+    <div>
+      <%= @item.name %>
+    </div>
+  </div>
+  
+      <div class="form-group mb-3">
+    <p><strong>Active:</strong></p>
+    <div>
+      <%= @item.active %>
+    </div>
+  </div>
+  
+      <div class="form-group mb-3">
+    <p><strong>Type item:</strong></p>
+    <div>
+      <%= @item.type_item_id %>
+    </div>
+  </div>
+  
+  
+  <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-primary min-width-btn" %>
+  <%= link_to 'Back', items_path, class: "btn btn-light min-width-btn" %>
+</div>
